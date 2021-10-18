@@ -19,22 +19,28 @@ print(" Welcome to Shitty Translator 1.0!  \n")
 
 print(" Type the language of the word or sentence you wish to translate to or from English \n ")
 
-input
 
-Translating = True
+def translating_func(Translating):
+    while Translating:
+        lang = input(" Type any language \n \n ")
+        word = input(
+            "\n Type any word or sentence of the above mentioned language to be translated to " + str(lang) + "\n ")
 
-while Translating:
-    lang = input(" Type any language \n ")
-    word = input(
-        "Type any word or sentence of the above mentioned language to be translated to " + str(lang) + " \n ")
+        translator = Translator(to_lang=lang)
+        translate = translator.translate(word)
+        print(translate)
 
-    translator = Translator(to_lang=lang)
-    translate = translator.translate(word)
-    print(translate)
+        stop = input(" Do you wish to translate again? Y/n ")
+        if stop == 'y' or "Y":
+            translating_func(Translating=True)
+        else:
+            translating_func(Translating=False)
 
-    stop = input(" Do you wish to translate again? Y/n ")
-    if stop == 'y' or "Y":
-        Translating
-    else:
-        Translating = False
-        exit()
+
+def main():
+    translating_func(True)
+    sys.exit()
+
+
+if __name__ == '__main__':
+    main()
